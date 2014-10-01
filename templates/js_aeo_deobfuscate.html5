@@ -1,0 +1,23 @@
+function aeo_link_decode(href) {
+    var address = href.replace(/.*<?php echo ((strstr($this->folder, '\\\\') ? stripslashes($this->folder) : $this->folder));?>\/aeo\/([a-z0-9._%-]+)\+([a-z0-9._%-]+)\+([a-z.]+)\+[0-9]+\+{0,1}([^\.]*)\..*/i, '$1' + '@' + '$2' + '.' + '$3' + '|' + '$4');
+    var i = strpos(address, '|', 0);
+    var params = '';
+    if (i) {
+    	var params = address.substr(i + 1);
+    	address = address.substr(0, i);
+    	
+    	if (params.length > 0) {
+    		params = base64_decode(params);
+    	}
+    }
+    
+    address = rot13 ? str_rot13(address) : address;
+    if (params.length > 0) {
+   		address = address + html_entity_decode(params);
+   	}
+        
+    window.location.replace('mailto:' + address);
+}
+
+var rot13 = <?php echo ($this->rot13 ? 'true' : 'false');?>;
+var tooltip_js_on = '<?php echo (stripslashes($this->tooltip_js_on));?>';
