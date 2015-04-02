@@ -235,14 +235,9 @@ class AeoFrontendUtil extends \Frontend {
 													->limit(1)
 													->execute($objPage->layout)
 													->fetchAssoc();
-// 	   if ($objLayout['addMooTools']) {
-// 	      $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/aeo-mootools.js';
-// 	   } else if ($objLayout['addJQuery']) {
-// 	      $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/aeo-jquery.js';
-// 	   }
 	   
-	   $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/onReadyAeo.js';
-	   $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/aeo.js';
+	   $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/onReadyAeo.min.js|static';
+	   $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/aeo.min.js|static';
 	}
 	
 	/**
