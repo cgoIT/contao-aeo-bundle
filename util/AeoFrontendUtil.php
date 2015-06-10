@@ -34,8 +34,8 @@ namespace cgoIT\aeo;
  * Class AeoFrontendUtil
  */
 
-define('REGEXP_EMAIL_PREFIX', '(\w[-._\w]*\w)\@');
-define('REGEXP_EMAIL', '\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,18}');
+//define('REGEXP_EMAIL_PREFIX', '(\w[-._\w]*\w)\@');
+define('REGEXP_EMAIL', '\w[-._\w]*\w@[\d\w][-._\w]*\w\.\w{2,18}');
 define('REGEXP_MAILTO_LINK', '/(?P<all>\<a(?P<before>[^>]+)href\=["\']mailto\:(?P<email>\w[-._\w]*\w)\@(?P<domain>\w[-._\w]*\w)\.(?P<suffix>\w{2,18})(?P<params>\?{0,1}[\w=&; ]*)["\'](?P<after>[^>]*)\>).*?\<\/a\>/ism');
 
 class AeoFrontendUtil extends \Frontend {
@@ -356,7 +356,7 @@ class Aeo extends \System {
 		// jetzt alle nicht verlinkten eMail-Adressen verschleiern.
 		$arrNoAeoAreas = $this->getNoAeoAreas($output);
 		$intOffset = 0;
-		while(preg_match('/'.REGEXP_EMAIL_PREFIX.'/esm', $output, $arrNonLinkedeMail, PREG_OFFSET_CAPTURE, $intOffset)) {
+		while(preg_match('/'.REGEXP_EMAIL.'/esm', $output, $arrNonLinkedeMail, PREG_OFFSET_CAPTURE, $intOffset)) {
 			if ($this->isEnabled($arrNonLinkedeMail[0][1], $arrNoAeoAreas)) {
 				$output = $this->str_replace($arrNonLinkedeMail[0][0], $this->obfuscateWithMethod($arrNonLinkedeMail[0][0], $this->method, false, $arrNonLinkedeMail[0][1], $intOffset), $output, $arrNonLinkedeMail[0][1]);
 
@@ -504,6 +504,8 @@ class Aeo extends \System {
 		switch ($this->method) {
 			case 'rtl':
 				$css .= '.obfuscated { unicode-bidi: bidi-override; direction: rtl; }';
+				// Hack für FireFox
+				//$css .= '*>.obfuscated { unicode-bidi: -moz-isolate-override !important; }';
 				break;
 			case 'nullspan':
 				$css .= 'span.obfuscated { display: none; }';
@@ -551,14 +553,15 @@ class Aeo extends \System {
 	}
 	
 	function shorten ($email, $includeCss) {
-		if (strlen ($email) <= 4) {
-			$email = substr ($email, 0, 1);
-		} else if (strlen ($email) <= 6) {
-			$email = substr ($email, 0, 3);
+		$arrEmail = explode('@', $email);
+		if (strlen ($arrEmail[0]) <= 4) {
+			$email = substr ($arrEmail[0], 0, 1);
+		} else if (strlen ($arrEmail[0]) <= 6) {
+			$email = substr ($arrEmail[0], 0, 3);
 		} else {
-			$email = substr ($email, 0, 4);
+			$email = substr ($arrEmail[0], 0, 4);
 		}
-		return $email.'...'.($includeCss ? '' : '&#64;');
+		return $email.'...'.($includeCss ? '' : '&#64;').$arrEmail[1];
 	}
 		
 	function rtl ($email, $includeCss) {
@@ -566,25 +569,26 @@ class Aeo extends \System {
 		if ($includeCss) {
 			return '<span style="unicode-bidi: bidi-override; direction: rtl;">'.$strEmail.'</span>';
 		}
-		return '<span class="obfuscated">'.strrev($email).'</span>';
+		return '<span class="obfuscated">'.$strEmail.'</span>';
 	}
 			
 	function nullspan ($email, $includeCss) {
-		if (strlen ($email) <= 4) {
-			$email1 = substr ($email, 0, 1);
-			$email2 = substr ($email, 1);
-		} else if (strlen ($email) <= 6) {
-			$email1 = substr ($email, 0, 3);
-			$email2 = substr ($email, 3);
+		$arrEmail = explode('@', $email);
+		if (strlen ($arrEmail[0]) <= 4) {
+			$email1 = substr ($arrEmail[0], 0, 1);
+			$email2 = substr ($arrEmail[0], 1);
+		} else if (strlen ($arrEmail[0]) <= 6) {
+			$email1 = substr ($arrEmail[0], 0, 3);
+			$email2 = substr ($arrEmail[0], 3);
 		} else {
-			$email1 = substr ($email, 0, 4);
-			$email2 = substr ($email, 4);
+			$email1 = substr ($arrEmail[0], 0, 4);
+			$email2 = substr ($arrEmail[0], 4);
 		}
 		
 		if ($includeCss) {
-			return $email1.'<span style="display: none;">null</span>'.$email2;
+			return $email1.'<span style="display: none;">null</span>'.$email2.'&#64;'.$arrEmail[1];
 		}
-		return $email1.'<span class="obfuscated">null</span>'.$email2;
+		return $email1.'<span class="obfuscated">null</span>'.$email2.'&#64;'.$arrEmail[1];
 	}
 	
 	function getNoAeoAreas($output) {

@@ -52,12 +52,12 @@ class PageRoot_Aeo extends \PageRoot {
 	 * @param boolean
 	 * @return integer
 	 */
-	public function generate($pageId, $blnReturn=false) {
+	public function generate($pageId, $blnReturn=false, $blnPreferAlias=false) {
 		$id = $this->AeoRedirectUtil->redirectFromRootPage();
 		if ($id !== FALSE) {
 			return $id;
 		} else {
-			return parent::generate($pageId, $blnReturn);
+			return parent::generate($pageId, $blnReturn, $blnPreferAlias);
 		}
 	}
 }
