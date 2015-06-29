@@ -27,8 +27,8 @@ function doWithMootols() {
 
 function doWithJQuery() {
 	jQuery('a[name^="aeo-obfuscated-"]').each(function(i, el) {
-			if (!$(el).hasClass('aeo-with-title')) {
-				$(el).attr('title',tooltip_js_on);
+			if (!jQuery(el).hasClass('aeo-with-title')) {
+				jQuery(el).attr('title',tooltip_js_on);
 			}
 			aeo_prepare_link(el);
 		}
