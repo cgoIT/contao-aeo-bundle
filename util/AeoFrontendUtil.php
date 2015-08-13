@@ -36,7 +36,7 @@ namespace cgoIT\aeo;
 
 //define('REGEXP_EMAIL_PREFIX', '(\w[-._\w]*\w)\@');
 define('REGEXP_EMAIL', '\w[-._\w]*\w@[\d\w][-._\w]*\w\.\w{2,18}');
-define('REGEXP_MAILTO_LINK', '/(?P<all>\<a(?P<before>[^>]+)href\=["\']mailto\:(?P<email>\w[-._\w]*\w)\@(?P<domain>\w[-._\w]*\w)\.(?P<suffix>\w{2,18})(?P<params>\?{0,1}[\w=&; ]*)["\'](?P<after>[^>]*)\>).*?\<\/a\>/ism');
+define('REGEXP_MAILTO_LINK', '/(?P<all>\<a(?P<before>[^>]+)href\=["\']mailto\:(?P<email>\w[-._\w]*\w)\@(?P<domain>\w[-._\w]*\w)\.(?P<suffix>\w{2,18})(?P<params>\?{0,1}[^"^\']*)["\'](?P<after>[^>]*)\>).*?\<\/a\>/ism');
 
 class AeoFrontendUtil extends \Frontend {
 
