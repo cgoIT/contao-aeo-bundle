@@ -508,7 +508,7 @@ class Aeo extends \System {
 				//$css .= '*>.obfuscated { unicode-bidi: -moz-isolate-override !important; }';
 				break;
 			case 'nullspan':
-				$css .= 'span.obfuscated { display: none; }';
+				$css .= 'span.obfuscated { display: none; white-space: nowrap;}';
 				break;
 		}
 		$css .= "\n</style>"; 
@@ -586,7 +586,7 @@ class Aeo extends \System {
 		}
 		
 		if ($includeCss) {
-			return $email1.'<span style="display: none;">null</span>'.$email2.'&#64;'.$arrEmail[1];
+			return $email1.'<span style="display: none; white-space: nowrap;">null</span>'.$email2.'&#64;'.$arrEmail[1];
 		}
 		return $email1.'<span class="obfuscated">null</span>'.$email2.'&#64;'.$arrEmail[1];
 	}
