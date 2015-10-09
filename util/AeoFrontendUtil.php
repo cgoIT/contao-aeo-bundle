@@ -104,7 +104,7 @@ class AeoFrontendUtil extends \Frontend {
 			  	}
 			  	if (in_array('i18nl10n', $this->Config->getActiveModules())) {
 			  		$this->AeoUtil->fixupCurrentLanguage();
-			  		if ($GLOBALS['TL_CONFIG']['i18nl10n_addLanguageToUrl']) {
+			  		if ($GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'url') {
 			  			$folder .= $GLOBALS['TL_LANGUAGE'] . '/';
 			  		}
 					$folder .= $this->virtual_path.'/'.$GLOBALS['TL_LANGUAGE'];
@@ -122,7 +122,7 @@ class AeoFrontendUtil extends \Frontend {
 			  	$urlSuffix = '';
 			  	if (strlen($GLOBALS['TL_CONFIG']['urlSuffix']) > 0) {
 			  		if (in_array('i18nl10n', $this->Config->getActiveModules()) &&
-			  		    $GLOBALS['TL_CONFIG']['i18nl10n_alias_suffix']) {
+			  		    $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'alias') {
 			  			$this->AeoUtil->fixupCurrentLanguage();
 			  			$urlSuffix .= '.'.$GLOBALS['TL_LANGUAGE'];
 			  		}

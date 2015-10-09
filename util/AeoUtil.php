@@ -97,7 +97,7 @@ class AeoUtil extends \Controller {
          if(
             ($selected_language) && 
             in_array($selected_language,
-                             deserialize($GLOBALS['TL_CONFIG']['i18nl10n_languages']))
+                             \I18nl10n\Classes\I18nl10n::getInstance()->getAvailableLanguages(true, true))
          ) {
             $_SESSION['TL_LANGUAGE'] = $GLOBALS['TL_LANGUAGE'] = $selected_language;
          } elseif(isset($_SESSION['TL_LANGUAGE'])) {

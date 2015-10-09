@@ -59,7 +59,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_show_info'] = array
 (
       'label'                   => &$GLOBALS['TL_LANG']['tl_content']['aeo_show_info'],
       'exclude'                 => true,
-      'filter'                  => true,
+      'filter'                  => false,
       'search'                  => false,
       'inputType'               => 'checkbox',
       'eval'                    => array('tl_class'=>'w50')
@@ -69,8 +69,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_info_text'] = array
 (
       'label'                   => &$GLOBALS['TL_LANG']['tl_content']['aeo_info_text'],
       'exclude'                 => true,
-      'filter'                  => true,
-      'search'                  => true,
+      'filter'                  => false,
+      'search'                  => false,
 	  'inputType'               => 'textarea',
 	  'eval'                    => array('rte'=>'tinyMCE', 'tl_class'=>'clr')
 );

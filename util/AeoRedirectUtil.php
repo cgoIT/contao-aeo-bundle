@@ -83,7 +83,7 @@ class AeoRedirectUtil extends \Frontend {
 			}
 			$i18nl10nLanguage = '';
 			if (in_array('i18nl10n', $this->Config->getActiveModules())) {
-		  		if ($GLOBALS['TL_CONFIG']['i18nl10n_addLanguageToUrl']) {
+		  		if ($GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'url') {
 		  			$i18nl10nLanguage = $arrFragments[count($arrFragments) - 1];
 		  		}
 			}
@@ -128,11 +128,11 @@ class AeoRedirectUtil extends \Frontend {
 				
 				$strObfuscatedValues = $arrFragments[3];
 			    if (in_array('i18nl10n', $this->Config->getActiveModules()) &&
-				     $GLOBALS['TL_CONFIG']['i18nl10n_alias_suffix']) {
+				     $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'alias') {
 					$this->AeoUtil->fixupCurrentLanguage();
 					$strObfuscatedValues = str_replace('.'.$GLOBALS['TL_LANGUAGE'], '', $strObfuscatedValues);
 				}
-				$arrObfuscatedValues = explode('+', $strObfuscatedValues, 5);
+				$arrObfuscatedValues = explode(' ', $strObfuscatedValues, 5);
 				
 				$arrFragments[$i++] = 'n';
 				$arrFragments[$i++] = $arrObfuscatedValues[0];
@@ -160,7 +160,7 @@ class AeoRedirectUtil extends \Frontend {
 				}
 				
 			    if (in_array('i18nl10n', $this->Config->getActiveModules()) &&
-				     $GLOBALS['TL_CONFIG']['i18nl10n_addLanguageToUrl'] &&
+				     $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'url' &&
 				     strlen($i18nl10nLanguage)) {
 		  			$arrFragments[$i++] = 'language';
 		  			$arrFragments[$i++] = $i18nl10nLanguage;
@@ -181,7 +181,7 @@ class AeoRedirectUtil extends \Frontend {
 			$url = $this->removeUrlPrefix($url);
 			if ($GLOBALS['TL_CONFIG']['addLanguageToUrl'] ||
 			    (in_array('i18nl10n', $this->Config->getActiveModules()) &&
-			     $GLOBALS['TL_CONFIG']['i18nl10n_addLanguageToUrl'])) {
+			     $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'url')) {
 				$arrUrlFragments = explode('/', $url);
 				$url = $arrUrlFragments[1];
 			}
@@ -218,7 +218,7 @@ class AeoRedirectUtil extends \Frontend {
 			}
 		}
 		if (in_array('i18nl10n', $this->Config->getActiveModules()) &&
-		     $GLOBALS['TL_CONFIG']['i18nl10n_alias_suffix']) {
+		     $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'alias') {
 			$this->AeoUtil->fixupCurrentLanguage();
 			$strUrl = str_replace('.'.$GLOBALS['TL_LANGUAGE'], '', $strUrl);
 		}

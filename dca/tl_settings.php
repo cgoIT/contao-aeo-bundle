@@ -144,7 +144,7 @@ class tl_settings_aeo extends \Backend
         }
         
         if (in_array('i18nl10n', $this->Config->getActiveModules())) {
-        	$languages = deserialize($GLOBALS['TL_CONFIG']['i18nl10n_languages']);
+        	$languages = \I18nl10n\Classes\I18nl10n::getInstance()->getAvailableLanguages(true, true);
 	        foreach ($languages as $language) {
 	        	array_push($arrLanguages, strtolower($language));
 	        }
