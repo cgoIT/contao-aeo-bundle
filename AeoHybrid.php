@@ -189,7 +189,6 @@ class AeoHybrid extends \Hybrid
 											->limit(1)
 											->execute($this->Input->get('p'))
 											->fetchAssoc();
-		$pageDetails = $this->getPageDetails($objResult['id']);
 		$backLink = $this->generateFrontendUrl($objResult);
 		
 		/**

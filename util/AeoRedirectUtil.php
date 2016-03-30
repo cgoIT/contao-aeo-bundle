@@ -132,7 +132,7 @@ class AeoRedirectUtil extends \Frontend {
 					$this->AeoUtil->fixupCurrentLanguage();
 					$strObfuscatedValues = str_replace('.'.$GLOBALS['TL_LANGUAGE'], '', $strObfuscatedValues);
 				}
-				$arrObfuscatedValues = explode(' ', $strObfuscatedValues, 5);
+				$arrObfuscatedValues = explode('+', $strObfuscatedValues, 5);
 				
 				$arrFragments[$i++] = 'n';
 				$arrFragments[$i++] = $arrObfuscatedValues[0];
