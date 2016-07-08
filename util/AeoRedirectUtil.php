@@ -176,8 +176,8 @@ class AeoRedirectUtil extends \Frontend {
 			$url = $arrValue['aeo_redirecturl'];
 		} else {
 			$objPage = \PageModel::findPublishedByIdOrAlias($arrValue['aeo_redirecturl']);
-			$objPage = $this->getPageDetails($objPage);
-			$url = $this->generateFrontendUrl($objPage->row());
+			$objPage2 = $this->getPageDetails($objPage);
+			$url = $this->generateFrontendUrl($objPage2->row());
 			$url = $this->removeUrlPrefix($url);
 			if ($GLOBALS['TL_CONFIG']['addLanguageToUrl'] ||
 			    (in_array('i18nl10n', $this->Config->getActiveModules()) &&

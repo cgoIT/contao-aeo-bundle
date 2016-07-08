@@ -185,10 +185,10 @@ class AeoFrontendUtil extends \Frontend {
   	public function obfuscateEmails($strContent, $strTemplate)
 	{
 		global $objPage;
-		$objPage = $this->getPageDetails($objPage->id);
-		$redirectPageId = $this->AeoUtil->getRedirectPageForLanguage(deserialize($this->jump_to_no_js), $objPage->rootLanguage);
+		$objPage2 = $this->getPageDetails($objPage->id);
+		$redirectPageId = $this->AeoUtil->getRedirectPageForLanguage(deserialize($this->jump_to_no_js), $objPage2->rootLanguage);
 		
-		if (TL_MODE == 'FE' && $this->replace_standard_obfuscation && $objPage->id != $redirectPageId) {
+		if (TL_MODE == 'FE' && $this->replace_standard_obfuscation && $objPage2->id != $redirectPageId) {
 			$strContent = $this->aeoReplaceInsertTags($strContent);
 			
 			$this->import('String');
@@ -221,7 +221,7 @@ class AeoFrontendUtil extends \Frontend {
 				}
 			}
 
-			$strContent = $this->aeo->prepareOutput($strContent, $objPage->id);
+			$strContent = $this->aeo->prepareOutput($strContent, $objPage2->id);
 		}
 
 		return $strContent;
@@ -229,11 +229,11 @@ class AeoFrontendUtil extends \Frontend {
 	
 	private function includeStaticJs() {
 	   global $objPage;
-	   $objPage = $this->getPageDetails($objPage);
+	   $objPage2 = $this->getPageDetails($objPage);
 	   
 	   $objLayout = $this->Database->prepare("SELECT * FROM tl_layout WHERE id=?")
 													->limit(1)
-													->execute($objPage->layout)
+													->execute($objPage2->layout)
 													->fetchAssoc();
 	   
 	   $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/onReadyAeo.min.js|static';
