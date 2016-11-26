@@ -28,6 +28,11 @@
  * @filesource
  */
 
+// Backwards compatibility for Contao < 3.5.1
+if (!class_exists('StringUtil') && class_exists('String')) {
+	class_alias('String', 'StringUtil');
+}
+
 /**
  * Hooks
  */

@@ -191,14 +191,14 @@ class AeoFrontendUtil extends \Frontend {
 		if (TL_MODE == 'FE' && $this->replace_standard_obfuscation && $objPage2->id != $redirectPageId) {
 			$strContent = $this->aeoReplaceInsertTags($strContent);
 			
-			$this->import('String');
+			$this->import('StringUtil');
 			
 			// erst alle Mailadresse decodieren (Verschleierung von Contao rückgänging machen)
 			$intOffset = 0;
 			$arrNoAeoAreas = $this->aeo->getNoAeoAreas($strContent);
 			while (preg_match('/(&#[x]?\w+;)+/i', $strContent, $arrEmail, PREG_OFFSET_CAPTURE, $intOffset)) {
 				if ($this->aeo->isEnabled($arrEmail[0][1], $arrNoAeoAreas)) {
-					$strDecodedMail = $this->String->decodeEntities($arrEmail[0][0]);
+					$strDecodedMail = $this->StringUtil->decodeEntities($arrEmail[0][0]);
 					if (preg_match('/mailto:'.REGEXP_EMAIL.'/i', $strDecodedMail)) {
 						// erst alle verlinkten eMail-Adressen entschleiern
 						$strContent = $this->aeo->str_replace($arrEmail[0][0], $strDecodedMail, $strContent, $arrEmail[0][1]);
@@ -281,17 +281,17 @@ class AeoFrontendUtil extends \Frontend {
 	      		continue;
 	  		}
 			
-			$this->import('String');
+			$this->import('StringUtil');
 			if ($GLOBALS['TL_CONFIG']['aeo_replace_standard_obfuscation'] === true &&
 	  		    $this->aeo->isEnabled($position, $arrNoAeoAreas)) {
 	  		    // AEO aktiv und Bereich nicht auf deaktiviert gestellt
-		  		$strValue = $this->aeo->obfuscateSingle($this->String->decodeEntities($arrTag[1]), $objPage->id, $arrTag[2]);
+		  		$strValue = $this->aeo->obfuscateSingle($this->StringUtil->decodeEntities($arrTag[1]), $objPage->id, $arrTag[2]);
 	  			$strContent = $this->aeo->str_replace($arrTags[0][0], $strValue, $strContent, $position);
 	  			$intOffset += strlen($strValue);
 	  		} else {
 	  			// AEO nicht aktiv oder Bereich auf deaktiviert gestellt
-				$strEmail = $this->String->encodeEmail($this->String->decodeEntities($arrTag[1]));
-				$strValue = '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $this->String->encodeEmail($strEmail) . '" class="email">' . $this->String->encodeEmail(preg_replace('/\?.*$/', '', $strEmail)) . '</a>';
+				$strEmail = $this->StringUtil->encodeEmail($this->StringUtil->decodeEntities($arrTag[1]));
+				$strValue = '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $this->StringUtil->encodeEmail($strEmail) . '" class="email">' . $this->StringUtil->encodeEmail(preg_replace('/\?.*$/', '', $strEmail)) . '</a>';
 				$strContent = $this->aeo->str_replace($arrTags[0][0], $strValue, $strContent, $position);
 				$intOffset += strlen($strValue);
 	  		}
@@ -402,8 +402,8 @@ class Aeo extends \System {
 			// passendes CSS hinzufügen
 			$strLink .= $this->obfuscateWithMethod($arrEmail[0], $method, true, 0, 0).'@'.$strDomain.'.'.$strTld;
 		} else {
-			$this->import('String');
-			$strLink .= $this->String->encodeEmail($email);
+			$this->import('StringUtil');
+			$strLink .= $this->StringUtil->encodeEmail($email);
 		}
 		$strLink .= '</a>';
 		return $this->createSpecialEntities($strLink);
