@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 
 /**
  * Contao Open Source CMS
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  cgo IT, 2012-2013
+ * @copyright  cgo IT, 2012-2017
  * @author     Carsten Götzinger (info@cgo-it.de)
  * @package    aeo
  * @license    GNU/LGPL
@@ -31,24 +31,22 @@
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['getFrontendModule'][] = array('aeo\\AeoFrontendUtil', 'aeoGetFrontendModule');
-$GLOBALS['TL_HOOKS']['getContentElement'][] = array('aeo\\AeoFrontendUtil', 'aeoGetContentElement');
-$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('aeo\\AeoFrontendUtil', 'obfuscateEmails');
-$GLOBALS['TL_HOOKS']['getPageIdFromUrl'][] = array('aeo\\AeoRedirectUtil', 'getRedirectPageAeo');
+$GLOBALS['TL_HOOKS']['getFrontendModule'][] = array('cgoIT\\aeo\\AeoFrontendUtil', 'aeoGetFrontendModule');
+$GLOBALS['TL_HOOKS']['getContentElement'][] = array('cgoIT\\aeo\\AeoFrontendUtil', 'aeoGetContentElement');
+$GLOBALS['TL_HOOKS']['outputFrontendTemplate'][] = array('cgoIT\\aeo\\AeoFrontendUtil', 'obfuscateEmails');
+$GLOBALS['TL_HOOKS']['getPageIdFromUrl'][] = array('cgoIT\\aeo\\AeoRedirectUtil', 'getRedirectPageAeo');
 
 /**
  * frontend moduls
  */
-$GLOBALS['FE_MOD']['application']['aeo'] = 'aeo\\AeoModule';
+$GLOBALS['FE_MOD']['application']['aeo'] = 'cgoIT\\aeo\\AeoModule';
 
 /**
  * content elements
  */
-$GLOBALS['TL_CTE']['includes']['aeo'] = 'aeo\\AeoCE';
+$GLOBALS['TL_CTE']['includes']['aeo'] = 'cgoIT\\aeo\\AeoCE';
 
 /**
  * PageTypes
  */
-$GLOBALS['TL_PTY']['root'] = 'aeo\\PageRoot_Aeo';
-
-?>
+$GLOBALS['TL_PTY']['root'] = 'cgoIT\\aeo\\PageRoot_Aeo';

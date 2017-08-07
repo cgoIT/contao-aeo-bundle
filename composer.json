@@ -1,0 +1,51 @@
+{
+	"name":"cgoit/contao-aeo-bundle",
+	"description":"Contao 4 Advanced eMail Obfuscation Bundle",
+	"keywords":["contao","aeo","bundle"],
+	"type":"contao-bundle",
+	"homepage":"https://cgo-it.de",
+	"license":"LGPL-3.0+",
+	"authors":[
+		{
+			"name":"Carsten Götzinger",
+			"homepage":"https://cgo-it.de",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"issues":"https://git.cgo-it.de/contao/aeo/issues",
+		"source":"https://git.cgo-it.de/contao/aeo",
+		"forum":"https://community.contao.org/de/showthread.php?31684-Advanced-eMail-Obfuscation"
+	},
+	"require":{
+		"php": ">=5.6.0",
+		"contao/core-bundle": "~4.3"
+	},
+	"require-dev": {
+        "contao/manager-plugin": "^2.0"
+	},
+	"conflict": {
+		"contao/manager-plugin": "<2.0 || >=3.0",
+		"symfony/symfony": "3.2.7"
+	},
+	"autoload": {
+		"psr-4": {
+			"cgoIT\\aeo\\": "src/"
+		},
+        "classmap": [
+            "src/Resources/contao/"
+		],
+		"exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+		]
+  	},
+	"extra": {
+		"branch-alias": {
+			"dev-develop": "3.6.x-dev"
+		},
+		"contao-manager-plugin": "cgoIT\\aeo\\ContaoManager\\Plugin"
+	}
+}

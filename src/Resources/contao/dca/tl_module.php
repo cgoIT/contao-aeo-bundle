@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  cgo IT, 2012-2013
+ * @copyright  cgo IT, 2012-2017
  * @author     Carsten Götzinger (info@cgo-it.de)
  * @package    aeo
  * @license    GNU/LGPL
@@ -41,23 +41,19 @@ foreach ($GLOBALS['TL_DCA']['tl_module']['palettes'] as $key => $palette) {
 		$GLOBALS['TL_DCA']['tl_module']['palettes'][$key] = $palette.';{aeo_legend:hide},aeo_disable';
 	}
 }
-//foreach ($GLOBALS['TL_DCA']['tl_module']['palettes'] as $key => $palette) {
-//	if (!is_array($palette)) {
-//		print "<h1>$key => $palette </h1>\n";
-//	}
-//}
 
 /**
  * fields
  */
 $GLOBALS['TL_DCA']['tl_module']['fields']['aeo_custom_template'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['aeo_custom_template'],
-	'default'                 => 'aeo_default_no_js',
-	'exclude'                 => true,
-	'inputType'               => 'select',
-	'options_callback'        => array('tl_module_aeo', 'getAeoTemplates'),
-	'eval'                    => array('tl_class'=>'w50')
+      'label'                   => &$GLOBALS['TL_LANG']['tl_module']['aeo_custom_template'],
+      'default'                 => 'aeo_default_no_js',
+      'exclude'                 => true,
+      'inputType'               => 'select',
+      'options_callback'        => array('tl_module_aeo', 'getAeoTemplates'),
+      'eval'                    => array('tl_class'=>'w50'),
+      'sql'                     => "varchar(32) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['aeo_show_info'] = array
@@ -67,7 +63,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['aeo_show_info'] = array
       'filter'                  => false,
       'search'                  => false,
       'inputType'               => 'checkbox',
-      'eval'                    => array('tl_class'=>'w50')
+      'eval'                    => array('tl_class'=>'w50'),
+      'sql'                     => "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['aeo_info_text'] = array
@@ -76,19 +73,21 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['aeo_info_text'] = array
       'exclude'                 => true,
       'filter'                  => false,
       'search'                  => false,
-	  'inputType'               => 'textarea',
-	  'eval'                    => array('rte'=>'tinyMCE', 'tl_class'=>'clr')
+      'inputType'               => 'textarea',
+      'eval'                    => array('rte'=>'tinyMCE', 'tl_class'=>'clr'),
+      'sql'                     => "mediumtext NULL"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['aeo_disable'] = array
 (
       'label'                   => &$GLOBALS['TL_LANG']['tl_module']['aeo_disable'],
-	  'default'                 => '',
+      'default'                 => '',
       'exclude'                 => true,
       'filter'                  => false,
       'search'                  => false,
       'inputType'               => 'checkbox',
-      'eval'                    => array('tl_class'=>'long')
+      'eval'                    => array('tl_class'=>'long'),
+      'sql'                     => "char(1) NOT NULL default ''"
 );
 
 /**

@@ -47,12 +47,13 @@ foreach ($GLOBALS['TL_DCA']['tl_content']['palettes'] as $key => $palette) {
  */
 $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_custom_template'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['aeo_custom_template'],
-	'default'                 => 'aeo_default_no_js',
-	'exclude'                 => true,
-	'inputType'               => 'select',
-	'options_callback'        => array('tl_content_aeo', 'getAeoTemplates'),
-	'eval'                    => array('tl_class'=>'w50')
+      'label'                   => &$GLOBALS['TL_LANG']['tl_content']['aeo_custom_template'],
+      'default'                 => 'aeo_default_no_js',
+      'exclude'                 => true,
+      'inputType'               => 'select',
+      'options_callback'        => array('tl_content_aeo', 'getAeoTemplates'),
+      'eval'                    => array('tl_class'=>'w50'),
+      'sql'                     => "varchar(32) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_show_info'] = array
@@ -62,7 +63,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_show_info'] = array
       'filter'                  => false,
       'search'                  => false,
       'inputType'               => 'checkbox',
-      'eval'                    => array('tl_class'=>'w50')
+      'eval'                    => array('tl_class'=>'w50'),
+      'sql'                     => "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_info_text'] = array
@@ -71,19 +73,21 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_info_text'] = array
       'exclude'                 => true,
       'filter'                  => false,
       'search'                  => false,
-	  'inputType'               => 'textarea',
-	  'eval'                    => array('rte'=>'tinyMCE', 'tl_class'=>'clr')
+      'inputType'               => 'textarea',
+      'eval'                    => array('rte'=>'tinyMCE', 'tl_class'=>'clr'),
+      'sql'                     => "mediumtext NULL"
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['aeo_disable'] = array
 (
       'label'                   => &$GLOBALS['TL_LANG']['tl_content']['aeo_disable'],
-	  'default'                 => '',
+      'default'                 => '',
       'exclude'                 => true,
       'filter'                  => true,
       'search'                  => false,
       'inputType'               => 'checkbox',
-      'eval'                    => array('tl_class'=>'long')
+      'eval'                    => array('tl_class'=>'long'),
+      'sql'                     => "char(1) NOT NULL default ''"
 );
 
 /**

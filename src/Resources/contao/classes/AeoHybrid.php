@@ -194,7 +194,7 @@ class AeoHybrid extends \Hybrid
 		/**
 		 * Template variables
 		 */
-		$this->import('String');
+		$this->import('StringUtil');
 		$this->Template->action = $this->getIndexFreeRequest();
 		$this->Template->n = $this->Input->get('n');
 		$this->Template->d = $this->Input->get('d');
@@ -220,11 +220,11 @@ class AeoHybrid extends \Hybrid
 			}
 			
 			if ($this->Input->post('p')) {
-				$email .= $this->String->decodeEntities(base64_decode($this->String->decodeEntities($this->Input->post('p'))));
+				$email .= $this->StringUtil->decodeEntities(base64_decode($this->StringUtil->decodeEntities($this->Input->post('p'))));
 			}
 			
 			$this->Template->isHuman = true;
-			$this->Template->success = sprintf($GLOBALS['TL_LANG']['aeo']['success'], $this->String->encodeEmail($email), $this->String->encodeEmail(preg_replace('/\?.*$/', '', $email)));
+			$this->Template->success = sprintf($GLOBALS['TL_LANG']['aeo']['success'], $this->StringUtil->encodeEmail($email), $this->StringUtil->encodeEmail(preg_replace('/\?.*$/', '', $email)));
 			
 			if (!headers_sent()) {
 				header('HTTP/1.1 303 See Other');
