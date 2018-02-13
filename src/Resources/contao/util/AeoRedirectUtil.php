@@ -30,10 +30,14 @@
 
 namespace cgoIT\aeo;
 
+use cgoIT\aeo\AeoUtil;
+
 /**
  * Class AeoRedirectUtil
  */
 class AeoRedirectUtil extends \Frontend {
+	
+	protected $aeoUtil;
 	
 	/**
 	 * Initialize the object
@@ -41,7 +45,7 @@ class AeoRedirectUtil extends \Frontend {
 	 */
 	public function __construct($arrAttributes=false) {
 		parent::__construct($arrAttributes);
-		$this->import('aeo\\AeoUtil', 'AeoUtil');
+		$this->aeoUtil = new AeoUtil();
 	}
 	
 	/**
@@ -129,7 +133,7 @@ class AeoRedirectUtil extends \Frontend {
 				$strObfuscatedValues = $arrFragments[3];
 			    if (in_array('i18nl10n', $this->Config->getActiveModules()) &&
 				     $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'alias') {
-					$this->AeoUtil->fixupCurrentLanguage();
+					$this->aeoUtil->fixupCurrentLanguage();
 					$strObfuscatedValues = str_replace('.'.$GLOBALS['TL_LANGUAGE'], '', $strObfuscatedValues);
 				}
 				$arrObfuscatedValues = explode('+', $strObfuscatedValues, 5);
@@ -219,7 +223,7 @@ class AeoRedirectUtil extends \Frontend {
 		}
 		if (in_array('i18nl10n', $this->Config->getActiveModules()) &&
 		     $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'alias') {
-			$this->AeoUtil->fixupCurrentLanguage();
+			$this->aeoUtil->fixupCurrentLanguage();
 			$strUrl = str_replace('.'.$GLOBALS['TL_LANGUAGE'], '', $strUrl);
 		}
 		return $strUrl;

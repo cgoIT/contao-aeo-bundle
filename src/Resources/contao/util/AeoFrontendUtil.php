@@ -30,6 +30,8 @@
 
 namespace cgoIT\aeo;
 
+use cgoIT\aeo\AeoUtil;
+
 /**
  * Class AeoFrontendUtil
  */
@@ -76,6 +78,8 @@ class AeoFrontendUtil extends \Frontend {
 	 */
 	protected $aeo;
 
+	protected $aeoUtil;
+
 	/**
 	 * Initialize the object
 	 * @param array
@@ -85,7 +89,7 @@ class AeoFrontendUtil extends \Frontend {
 
 		if (TL_MODE == 'FE') {
 			global $objPage;
-			$this->import('aeo\\AeoUtil', 'AeoUtil');
+			$this->aeoUtil = new AeoUtil();
 
 			if ($GLOBALS['TL_CONFIG']['aeo_replace_standard_obfuscation'] === true) {
 			  	$this->use_rot_13 = $GLOBALS['TL_CONFIG']['aeo_use_rot_13'];
@@ -103,7 +107,7 @@ class AeoFrontendUtil extends \Frontend {
 			  		$folder .= $objPage->rootLanguage.'/';
 			  	}
 			  	if (in_array('i18nl10n', $this->Config->getActiveModules())) {
-			  		$this->AeoUtil->fixupCurrentLanguage();
+			  		$this->aeoUtil->fixupCurrentLanguage();
 			  		if ($GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'url') {
 			  			$folder .= $GLOBALS['TL_LANGUAGE'] . '/';
 			  		}
@@ -123,7 +127,7 @@ class AeoFrontendUtil extends \Frontend {
 			  	if (strlen($GLOBALS['TL_CONFIG']['urlSuffix']) > 0) {
 			  		if (in_array('i18nl10n', $this->Config->getActiveModules()) &&
 			  		    $GLOBALS['TL_CONFIG']['i18nl10n_urlParam'] == 'alias') {
-			  			$this->AeoUtil->fixupCurrentLanguage();
+			  			$this->aeoUtil->fixupCurrentLanguage();
 			  			$urlSuffix .= '.'.$GLOBALS['TL_LANGUAGE'];
 			  		}
 			  		$urlSuffix .= $GLOBALS['TL_CONFIG']['urlSuffix'];
@@ -186,7 +190,7 @@ class AeoFrontendUtil extends \Frontend {
 	{
 		global $objPage;
 		$objPage2 = $this->getPageDetails($objPage->id);
-		$redirectPageId = $this->AeoUtil->getRedirectPageForLanguage(deserialize($this->jump_to_no_js), $objPage2->rootLanguage);
+		$redirectPageId = $this->aeoUtil->getRedirectPageForLanguage(deserialize($this->jump_to_no_js), $objPage2->rootLanguage);
 		
 		if (TL_MODE == 'FE' && $this->replace_standard_obfuscation && $objPage2->id != $redirectPageId) {
 			$strContent = $this->aeoReplaceInsertTags($strContent);

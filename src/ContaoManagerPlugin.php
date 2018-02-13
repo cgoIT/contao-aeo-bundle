@@ -22,7 +22,6 @@ class ContaoManagerPlugin implements BundlePluginInterface
         return [
             BundleConfig::create(CgoITAeoBundle::class)
                 ->setLoadAfter([ContaoCoreBundle::class])
-                ->setLoadAfter(['*'])
                 ->setReplace(['aeo']),
         ];
     }

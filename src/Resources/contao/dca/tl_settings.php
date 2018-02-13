@@ -211,7 +211,6 @@ class tl_settings_aeo extends \Backend
      */
     public function checkForModuleOrCE($varVal, \DataContainer $dc) {
     	$this->import('\\Database', 'Database');
-    	$this->import('aeo\\AeoUtil', 'AeoUtil');
 
     	$arrValue = deserialize($varVal);
         foreach ($arrValue as $key => $value) {
