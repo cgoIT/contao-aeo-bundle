@@ -18,8 +18,8 @@
 		"forum":"https://community.contao.org/de/showthread.php?31684-Advanced-eMail-Obfuscation"
 	},
 	"require":{
-		"php": ">=5.6.0",
-		"contao/core-bundle": "~4.3"
+		"php": ">=7.0.0",
+		"contao/core-bundle": "~4.5"
 	},
 	"require-dev": {
         "contao/manager-plugin": "^2.0"
