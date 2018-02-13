@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['aeo_virtual_path'] = array
       'default'                 => '',
       'exclude'                 => true,
       'inputType'               => 'text',
-      'eval'                    => array('decodeEntities'=>true, 'mandatory'=>true, 'tl_class'=>'w50', 'trailingSlash'=>false)
+      'eval'                    => array('decodeEntities'=>true, 'mandatory'=>true, 'tl_class'=>'w50', 'rgxp'=>'alias')
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['aeo_obfuscation_method'] = array
@@ -100,14 +100,14 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['aeo_jump_to_no_js'] = array
                 'default'           => '',
                 'exclude'           => true,
                 'inputType'         => 'checkbox',
-                'eval'              => array(doNotCopy => true, multiple => false, 'tl_class' => 'm12', 'style' => 'width:50px; padding-bottom: 3px;', 'includeBlankOption' => true),
+                'eval'              => array('doNotCopy' => true, 'multiple' => false, 'tl_class' => 'm12', 'style' => 'width:50px; padding-bottom: 3px;', 'includeBlankOption' => true),
             ),
             'aeo_language' => array(
                 'label'             => &$GLOBALS['TL_LANG']['tl_settings']['aeo_language'],
                 'exclude'           => true,
                 'inputType'         => 'select',
                 'options_callback'  => array("tl_settings_aeo", "getAvailableLanguages"),
-                'eval'              => array(doNotCopy => true, 'mandatory' => true, 'tl_class' => 'm12', 'style' => 'width:210px; padding-bottom: 3px; margin-top: 3px;', 'includeBlankOption' => true),
+                'eval'              => array('doNotCopy' => true, 'mandatory' => true, 'tl_class' => 'm12', 'style' => 'width:210px; padding-bottom: 3px; margin-top: 3px;', 'includeBlankOption' => true),
             ),
             'aeo_redirecturl' => array(
                 'label'             => &$GLOBALS['TL_LANG']['tl_settings']['aeo_redirecturl'],
