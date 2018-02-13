@@ -1,5 +1,5 @@
 {
-	"name":"cgoit/contao-aeo-bundle",
+	"name":"cgo-it/contao-aeo-bundle",
 	"description":"Contao 4 Advanced eMail Obfuscation Bundle",
 	"keywords":["contao","aeo","bundle"],
 	"type":"contao-bundle",
@@ -13,8 +13,8 @@
 		}
 	],
 	"support":{
-		"issues":"https://git.cgo-it.de/contao/aeo/issues",
-		"source":"https://git.cgo-it.de/contao/aeo",
+		"issues":"https://github.com/cgoIT/contao-aeo-bundle/issues",
+		"source":"https://github.com/cgoIT/contao-aeo-bundle.git",
 		"forum":"https://community.contao.org/de/showthread.php?31684-Advanced-eMail-Obfuscation"
 	},
 	"require":{
@@ -43,9 +43,6 @@
 		]
   	},
 	"extra": {
-		"branch-alias": {
-			"dev-develop": "3.6.x-dev"
-		},
 		"contao-manager-plugin": "cgoIT\\aeo\\ContaoManager\\Plugin"
 	}
 }
