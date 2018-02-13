@@ -2,6 +2,7 @@
 
 namespace cgoIT\aeo;
 
+use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
@@ -19,8 +20,8 @@ class ContaoManagerPlugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create('CgoITAeoBundle::class')
-                ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle'])
+            BundleConfig::create(CgoITAeoBundle::class)
+                ->setLoadAfter([ContaoCoreBundle::class])
                 ->setLoadAfter(['*'])
                 ->setReplace(['aeo']),
         ];
