@@ -9,9 +9,9 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 /**
  * Plugin for the Contao Manager.
  *
- * @author Carsten Götzinger
+ * @author Carsten GÃ¶tzinger
  */
-class Plugin implements BundlePluginInterface
+class ContaoManagerPlugin implements BundlePluginInterface
 {
     /**
      * {@inheritdoc}
@@ -19,7 +19,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create('cgoIT\aeo\CgoITAeoBundle')
+            BundleConfig::create('CgoITAeoBundle::class')
                 ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle'])
                 ->setLoadAfter(['*'])
                 ->setReplace(['aeo']),

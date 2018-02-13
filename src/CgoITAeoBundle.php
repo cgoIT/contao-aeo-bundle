@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * Configures the Contao aeo bundle.
  *
- * @author Carsten Götzinger
+ * @author Carsten GÃ¶tzinger
  */
 class CgoITAeoBundle extends Bundle
 {
