@@ -1,6 +1,6 @@
 <?php
 
-namespace cgoIT\aeo\ContaoManager;
+namespace cgoIT\aeo;
 
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
