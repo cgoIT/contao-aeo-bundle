@@ -236,8 +236,8 @@ class AeoFrontendUtil extends \Frontend {
 													->execute($objPage2->layout)
 													->fetchAssoc();
 	   
-	   $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/onReadyAeo.min.js|static';
-	   $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/zaeo/public/js/aeo.min.js|static';
+	   $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/cgoitaeo/js/onReadyAeo.min.js|static';
+	   $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/cgoitaeo/js/aeo.min.js|static';
 	}
 	
 	/**
@@ -494,8 +494,6 @@ class Aeo extends \System {
 		$this->import('aeo\\AeoJavaScript', 'AeoJavaScript');
 		$strContentJs = $this->AeoJavaScript->getContent(str_replace("/", "\/", $this->folder), $this->rot13);
 		$strContentJs = "\n<script type=\"text/javascript\">\n$strContentJs\n</script>\n";
-// 		$strContentJs .= "<script src=\"system/modules/zaeo/public/js/onReadyAeo.js\" type=\"text/javascript\"></script>";
-// 		$strContentJs .= "<script src=\"system/modules/zaeo/public/js/aeo.js\" type=\"text/javascript\"></script>";
 		return $strContentJs;
 	}
 
