@@ -80,7 +80,6 @@ class AeoFrontendUtil extends \Frontend {
 	protected $aeo;
 
 	protected $aeoUtil;
-	protected $aeoJavaScript;
 
 	/**
 	 * Initialize the object
@@ -92,7 +91,6 @@ class AeoFrontendUtil extends \Frontend {
 		if (TL_MODE == 'FE') {
 			global $objPage;
 			$this->aeoUtil = new AeoUtil();
-			$this->aeoJavaScript = AeoJavaScript::getInstance();
 
 			if ($GLOBALS['TL_CONFIG']['aeo_replace_standard_obfuscation'] === true) {
 			  	$this->use_rot_13 = $GLOBALS['TL_CONFIG']['aeo_use_rot_13'];
@@ -498,7 +496,7 @@ class Aeo extends \System {
 	}
 
 	function dropJS() {
-		$strContentJs = $this->aeoJavaScript->getContent(str_replace("/", "\/", $this->folder), $this->rot13);
+		$strContentJs = AeoJavaScript::getContent(str_replace("/", "\/", $this->folder), $this->rot13);
 		$strContentJs = "\n<script type=\"text/javascript\">\n$strContentJs\n</script>\n";
 		return $strContentJs;
 	}

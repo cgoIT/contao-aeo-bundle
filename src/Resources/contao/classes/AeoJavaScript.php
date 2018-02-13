@@ -37,12 +37,6 @@ class AeoJavaScript
 {
 
 	/**
-	 * Current object instance (Singleton)
-	 * @var Cache
-	 */
-	protected static $objInstance;
-	
-	/**
 	 * Template
 	 * @var string
 	 */
@@ -59,25 +53,13 @@ class AeoJavaScript
 	 */
 	final private function __clone() {}
 	
-	public function getContent($folder, $rot13 = true) {
+	public static function getContent($folder, $rot13 = true) {
 		$Template = new \FrontendTemplate(self::$strTemplate);
 		$Template->rot13 = $rot13;
 		$Template->folder = $folder;
 		$Template->tooltip_js_on = $GLOBALS['TL_LANG']['aeo']['tooltip_js'];
 		$Template->tooltip_js_off = $GLOBALS['TL_LANG']['aeo']['tooltip_no_js'];
 		return $Template->parse();
-	}
-
-	/**
-	 * Instantiate a new cache object and return it (Factory)
-	 * @return Cache
-	 */
-	public static function getInstance() {
-		if (!is_object(self::$objInstance)) {
-			self::$objInstance = new self();
-		}
-
-		return self::$objInstance;
 	}
 }
 
