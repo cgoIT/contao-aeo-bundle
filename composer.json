@@ -43,6 +43,11 @@
 		]
   	},
 	"extra": {
+		"contao": {
+			"sources": {
+				"": "system/modules/zaeo"
+			},
+		},
 		"contao-manager-plugin": "cgoIT\\aeo\\ContaoManager\\Plugin"
 	}
 }
