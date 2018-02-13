@@ -92,7 +92,7 @@ class AeoFrontendUtil extends \Frontend {
 		if (TL_MODE == 'FE') {
 			global $objPage;
 			$this->aeoUtil = new AeoUtil();
-			$this->aeoJavaScript = new AeoJavaScript();
+			$this->aeoJavaScript = AeoJavaScript::getInstance();
 
 			if ($GLOBALS['TL_CONFIG']['aeo_replace_standard_obfuscation'] === true) {
 			  	$this->use_rot_13 = $GLOBALS['TL_CONFIG']['aeo_use_rot_13'];
