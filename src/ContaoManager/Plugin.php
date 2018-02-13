@@ -22,7 +22,7 @@ class Plugin implements BundlePluginInterface
             BundleConfig::create('cgoIT\aeo\CgoITAeoBundle')
                 ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle'])
                 ->setLoadAfter(['*'])
-                ->setReplace(['aeo']);
+                ->setReplace(['aeo']),
         ];
     }
 }
