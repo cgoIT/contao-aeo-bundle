@@ -13,8 +13,8 @@
 		}
 	],
 	"support":{
-		"issues":"https://git.cgo-it.de/contao/aeo/issues",
-		"source":"https://git.cgo-it.de/contao/aeo.git",
+		"issues":"https://github.com/cgoIT/contao-aeo-bundle/issues",
+		"source":"https://github.com/cgoIT/contao-aeo-bundle.git",
 		"forum":"https://community.contao.org/de/showthread.php?31684-Advanced-eMail-Obfuscation"
 	},
 	"require":{
