@@ -43,7 +43,7 @@ class PageRoot_Aeo extends \PageRoot {
 	public function __construct() {
 		parent::__construct();
 		$this->import('\\Database', 'Database');
-		$this->import('aeo\\AeoRedirectUtil', 'AeoRedirectUtil');
+		$this->import('cgoIT\\aeo\\AeoRedirectUtil', 'AeoRedirectUtil');
 	}
 	
 	/**
